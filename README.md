@@ -45,6 +45,28 @@ Key decisions:
 - **`restart: unless-stopped`:** ensures the container comes back up automatically after a reboot or crash, without restarting if it was intentionally stopped.
 - **Port mapping `8080:80`:** exposes the site on port 8080 on the host, leaving 80 free for a future reverse proxy or load balancer.
 
+## Screenshots
+
+**Container running with correct port mapping**
+`docker ps` / `docker port` confirming the Nginx container is up and 8080 maps to container port 80.
+
+![Docker container running](./screenshots/docker-ps.png)
+
+**Live site**
+The site loaded in the browser via the EC2 instance's public IP on port 8080.
+
+![Live site](./screenshots/live-site.png)
+
+**EC2 instance**
+The instance running in the AWS Console (t3.micro, us-east-2).
+
+![EC2 instance](./screenshots/ec2-instance.png)
+
+**Security group rules**
+Inbound rules allowing SSH (22), HTTP (80), and the app port (8080).
+
+![Security group rules](./screenshots/security-group.png)
+
 ## Deployment Steps
 
 1. **Provision an EC2 instance** (t2.micro/t3.micro, free-tier eligible) with a security group allowing inbound traffic on port 8080 (and 22 for SSH).
@@ -80,3 +102,4 @@ Then open `http://localhost:8080`.
 ## What This Demonstrates
 
 Basic containerization of a static asset, use of Docker Compose for service definition, and manual deployment to a cloud VM — foundational steps before layering on IaC, CI/CD, and orchestration.
+
