@@ -1,0 +1,11 @@
+services:
+  app:
+    image: nginx:alpine
+    container_name: my-web-app
+    restart: unless-stopped
+    volumes:
+      - ./src:/usr/share/nginx/html:ro
+    ports:
+      - "8080:80"
+
+
